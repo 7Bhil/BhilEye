@@ -1,0 +1,16 @@
+[H[2J[3J
+╔══════════════════════════╗
+║      PhantomEye 👁️       ║
+║    "See what others can't"║
+╚══════════════════════════╝
+
+=== CTF TOOLKIT ===
+[1] Forensics & Métadonnées
+[2] Stéganographie (À venir)
+[3] Cryptographie (À venir)
+[4] Hash Cracker (À venir)
+[5] Réseau / PCAP (À venir)
+[6] Fichiers & Repair (À venir)
+[7] Quitter
+
+Choix : Au revoir !

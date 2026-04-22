@@ -1,0 +1,6 @@
+Pillow
+exifread
+piexif
+PyMuPDF
+pdfminer.six
+python-magic
