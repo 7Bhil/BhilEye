@@ -14,7 +14,7 @@ from modules.utils.path_selector import select_file
 
 def forensics_menu():
     while True:
-        print("\n=== Forensics & Métadonnées ===")
+        print("\n=== Forensics & Metadonnees ===")
         print("[1] Analyser une image")
         print("[2] Analyser un PDF")
         print("[3] Analyser un fichier quelconque")
@@ -44,12 +44,20 @@ def stega_menu():
         os.system('clear' if os.name == 'posix' else 'cls')
         print_banner()
         print("=== Steganographie V2 🔥 ===")
+        print("")
+        print("──── ANALYSE (Trouver) ────")
         print("[1] Scanner LSB Intelligent")
         print("[2] Amplificateur / Plans RGB / FFT")
         print("[3] Chi-Square Attack (Detection Statistique)")
-        print("[4] Stegano Audio WAV")
-        print("[5] Stegano Texte Invisible")
-        print("[6] Retour")
+        print("[4] Analyse Audio WAV")
+        print("[5] Analyse Texte Invisible")
+        print("")
+        print("──── ENCODER (Cacher) ────")
+        print("[6] Cacher message dans une image (LSB)")
+        print("[7] Cacher message dans un WAV (LSB Audio)")
+        print("[8] Cacher message dans un fichier texte")
+        print("")
+        print("[9] Retour")
         
         choice = input("\nChoix : ")
         
@@ -74,6 +82,18 @@ def stega_menu():
             path = select_file("Chemin du fichier texte")
             if path: analyze_text(path)
         elif choice == '6':
+            from modules.stegano.lsb_scanner import encode_lsb
+            path = select_file("Image de couverture")
+            if path: encode_lsb(path)
+        elif choice == '7':
+            from modules.stegano.audio_steg import encode_audio
+            path = select_file("Fichier WAV de couverture")
+            if path: encode_audio(path)
+        elif choice == '8':
+            from modules.stegano.text_steg import encode_text
+            path = select_file("Fichier texte de couverture")
+            if path: encode_text(path)
+        elif choice == '9':
             break
         else:
             print("Choix invalide.")
@@ -84,7 +104,7 @@ def main():
         print_banner()
         print("=== CTF TOOLKIT ===")
         print("[1] Forensics & Metadonnees")
-        print("[2] Steganographie V2 🔥")
+        print("[2] Steganographie V2 🔥 (Analyse + Cache)")
         print("[3] Cryptographie (A venir)")
         print("[4] Hash Cracker (A venir)")
         print("[5] Reseau / PCAP (A venir)")
