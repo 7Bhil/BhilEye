@@ -41,22 +41,39 @@ def forensics_menu():
 
 def stega_menu():
     while True:
-        print("\n=== Stéganographie ===")
-        print("[1] Analyse LSB (Bits de poids faible)")
-        print("[2] Analyse des plans de couleur (Filtres)")
-        print("[3] Retour")
+        os.system('clear' if os.name == 'posix' else 'cls')
+        print_banner()
+        print("=== Steganographie V2 🔥 ===")
+        print("[1] Scanner LSB Intelligent")
+        print("[2] Amplificateur / Plans RGB / FFT")
+        print("[3] Chi-Square Attack (Detection Statistique)")
+        print("[4] Stegano Audio WAV")
+        print("[5] Stegano Texte Invisible")
+        print("[6] Retour")
         
         choice = input("\nChoix : ")
         
         if choice == '1':
-            from modules.stega.lsb_analysis import extract_lsb
+            from modules.stegano.lsb_scanner import scan_lsb
             path = select_file("Chemin de l'image")
-            if path: extract_lsb(path)
+            if path: scan_lsb(path)
         elif choice == '2':
-            from modules.stega.plane_analysis import analyze_planes
+            from modules.stegano.visual_analyzer import analyze_visual
             path = select_file("Chemin de l'image")
-            if path: analyze_planes(path)
+            if path: analyze_visual(path)
         elif choice == '3':
+            from modules.stegano.steganalysis import chi_square_attack
+            path = select_file("Chemin de l'image")
+            if path: chi_square_attack(path)
+        elif choice == '4':
+            from modules.stegano.audio_steg import analyze_audio
+            path = select_file("Chemin du fichier WAV")
+            if path: analyze_audio(path)
+        elif choice == '5':
+            from modules.stegano.text_steg import analyze_text
+            path = select_file("Chemin du fichier texte")
+            if path: analyze_text(path)
+        elif choice == '6':
             break
         else:
             print("Choix invalide.")
@@ -66,12 +83,12 @@ def main():
         os.system('clear' if os.name == 'posix' else 'cls')
         print_banner()
         print("=== CTF TOOLKIT ===")
-        print("[1] Forensics & Métadonnées")
-        print("[2] Stéganographie")
-        print("[3] Cryptographie (À venir)")
-        print("[4] Hash Cracker (À venir)")
-        print("[5] Réseau / PCAP (À venir)")
-        print("[6] Fichiers & Repair (À venir)")
+        print("[1] Forensics & Metadonnees")
+        print("[2] Steganographie V2 🔥")
+        print("[3] Cryptographie (A venir)")
+        print("[4] Hash Cracker (A venir)")
+        print("[5] Reseau / PCAP (A venir)")
+        print("[6] Fichiers & Repair (A venir)")
         print("[7] Quitter")
         
         choice = input("\nChoix : ")
@@ -84,8 +101,8 @@ def main():
             print("Au revoir !")
             sys.exit()
         else:
-            print("Fonctionnalité non encore implémentée ou choix invalide.")
-            input("Appuyez sur Entrée pour continuer...")
+            print("Fonctionnalite non encore implementee ou choix invalide.")
+            input("Appuyez sur Entree pour continuer...")
 
 if __name__ == "__main__":
     main()

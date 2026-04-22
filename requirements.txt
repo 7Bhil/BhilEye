@@ -4,3 +4,7 @@ piexif
 PyMuPDF
 pdfminer.six
 python-magic
+numpy
+scipy
+matplotlib
+stegano
