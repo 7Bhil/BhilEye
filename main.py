@@ -39,13 +39,35 @@ def forensics_menu():
         else:
             print("Choix invalide.")
 
+def stega_menu():
+    while True:
+        print("\n=== Stéganographie ===")
+        print("[1] Analyse LSB (Bits de poids faible)")
+        print("[2] Analyse des plans de couleur (Filtres)")
+        print("[3] Retour")
+        
+        choice = input("\nChoix : ")
+        
+        if choice == '1':
+            from modules.stega.lsb_analysis import extract_lsb
+            path = select_file("Chemin de l'image")
+            if path: extract_lsb(path)
+        elif choice == '2':
+            from modules.stega.plane_analysis import analyze_planes
+            path = select_file("Chemin de l'image")
+            if path: analyze_planes(path)
+        elif choice == '3':
+            break
+        else:
+            print("Choix invalide.")
+
 def main():
     while True:
         os.system('clear' if os.name == 'posix' else 'cls')
         print_banner()
         print("=== CTF TOOLKIT ===")
         print("[1] Forensics & Métadonnées")
-        print("[2] Stéganographie (À venir)")
+        print("[2] Stéganographie")
         print("[3] Cryptographie (À venir)")
         print("[4] Hash Cracker (À venir)")
         print("[5] Réseau / PCAP (À venir)")
@@ -56,6 +78,8 @@ def main():
         
         if choice == '1':
             forensics_menu()
+        elif choice == '2':
+            stega_menu()
         elif choice == '7':
             print("Au revoir !")
             sys.exit()
